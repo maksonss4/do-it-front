@@ -12,14 +12,10 @@ import logoBgWhite from "../../assets/logo-bg-white.svg";
 import { Input } from "../../components/Form/Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-
-const signInSchema = yup.object().shape({
-  email: yup.string().required("Email obrigatório").email("Email inválido"),
-  password: yup.string().required("Senha obrigatória"),
-});
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { signInSchema } from "../../schemas";
 
 interface ISignInData {
   email: string;
@@ -27,7 +23,8 @@ interface ISignInData {
 }
 
 export const Login = () => {
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { signIn, loading, setLoading } = useAuth();
 
   const {
     formState: { errors },
@@ -38,7 +35,14 @@ export const Login = () => {
   });
 
   const handleSignIn: any = (data: ISignInData) => {
-    console.log(data);
+    setLoading(true);
+
+    signIn(data)
+      .then((_) => {
+        setLoading(false);
+        navigate("dashboard");
+      })
+      .catch((err) => setLoading(false));
   };
 
   return (
@@ -72,7 +76,7 @@ export const Login = () => {
           </Heading>
           <Text maxW="350px">
             Flexível e atrativo de gerenciar
-            <b>seus projetos em uma única plataforma</b>
+            <b> seus projetos em uma única plataforma</b>
           </Text>
         </Grid>
         <Grid
