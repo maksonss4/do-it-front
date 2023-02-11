@@ -1,37 +1,31 @@
 import { Flex } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInSchema } from "../../schemas";
-import { ISignIn, useAuth } from "../../contexts/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
-import { LoginInfo } from "./LoginInfo";
-import { LoginForm } from "./LoginForm";
+import { signupSchema } from "../../schemas";
+import { SignupInfo } from "./SignupInfo";
+import { SignupForm } from "./SignupForm";
 import { useState } from "react";
 
-export const Login = () => {
+export interface ISignup {
+  name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+}
+
+export const Signup = () => {
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm<ISignIn>({
-    resolver: yupResolver(signInSchema),
+  } = useForm<ISignup>({
+    resolver: yupResolver(signupSchema),
   });
 
-  const handleSignIn: any = (data: ISignIn) => {
-    setLoading(true);
-
-    signIn(data)
-      .then((_) => {
-        setLoading(false);
-        const toNavigate = location.state?.from?.pathname || "dashboard";
-        navigate(toNavigate);
-      })
-      .catch(() => setLoading(false));
+  const handleSignup = (data: ISignup) => {
+    console.log(data);
   };
 
   return (
@@ -43,8 +37,8 @@ export const Login = () => {
       bgGradient={[
         "linear(to-b, purple.800 65%, white 35%)",
         "linear(to-b, purple.800 65%, white 35%)",
-        "linear(to-r, purple.800 65%, white 35%)",
-        "linear(to-r, purple.800 65%, white 35%)",
+        "linear(to-l, purple.800 65%, white 35%)",
+        "linear(to-l, purple.800 65%, white 35%)",
       ]}
       color="white"
     >
@@ -54,13 +48,13 @@ export const Login = () => {
         flexDirection={["column", "column", "row", "row"]}
         alignItems="center"
       >
-        <LoginInfo />
-        <LoginForm
+        <SignupForm
           errors={errors}
-          handleSignIn={handleSubmit(handleSignIn)}
+          handleSignup={handleSubmit(handleSignup)}
           loadingLogin={loading}
           register={register}
         />
+        <SignupInfo />
       </Flex>
     </Flex>
   );
