@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Heading, Text, VStack } from "@chakra-ui/react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { ISignup } from ".";
 import { Input } from "../../components/Form/Input";
 
@@ -18,22 +17,20 @@ export const SignupForm = ({
   register,
   loadingLogin,
 }: ISignupForm) => {
-  const navigate = useNavigate();
-
   return (
     <Grid
       as="form"
       onSubmit={handleSignup}
       mt={["4", "4", "0"]}
       w={["95%", "95%", "40%", "40%"]}
-      padding="30px 25px"
+      padding="10px 25px"
       border="3px solid"
       borderColor="gray.100"
       bg="white"
       color="gray.900"
     >
       <Heading size="lg">Crie sua conta</Heading>
-      <VStack mt="6" spacing="5">
+      <VStack mt="6" spacing="3">
         <Input
           placeholder="Digite seu nome"
           icon={FaUser}
@@ -43,9 +40,9 @@ export const SignupForm = ({
         />
         <Box w="100%">
           <Input
-            placeholder="Digite seu login"
+            placeholder="Digite seu email"
             icon={FaEnvelope}
-            label="Login"
+            label="Email"
             error={errors.email}
             {...register("email")}
           />
