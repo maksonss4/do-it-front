@@ -9,6 +9,7 @@ import { GoBackButton } from "./GoBackButton";
 import { api } from "../../services/api";
 import { ModalSuccess } from "../../components/Modal/ModalSuccess";
 import { ModalError } from "../../components/Modal/ModalError";
+import { useNavigate } from "react-router-dom";
 
 export interface ISignup {
   name: string;
@@ -33,6 +34,7 @@ export const Signup = () => {
     onOpen: onOpenModalSuccess,
     onClose: onCloseModalSuccess,
   } = useDisclosure();
+
   const {
     isOpen: isModalErrorOpen,
     onOpen: onOpenModalError,
@@ -60,11 +62,22 @@ export const Signup = () => {
     md: true,
   });
 
+  const navigate = useNavigate();
+
   return (
     <>
-      <ModalSuccess isOpen={isModalSuccessOpen} onClose={onCloseModalSuccess} />
+      <ModalSuccess
+        buttonMessage="Ir para o login agora"
+        message="Seu cadastro deu super certo, <b>vamos lá</b>"
+        isOpen={isModalSuccessOpen}
+        onClose={onCloseModalSuccess}
+        onClick={() => navigate("/")}
+        secondaryText="Você já pode começar criando <b>suas listas</b> de tarefas agora mesmo..."
+      />
       <ModalError
         error="Seu email já está em uso"
+        secondaryText="Você já pode tentar novamente, <b>clicando</b> no botão acima ou
+        aguarde alguns minutos..."
         isOpen={isModalErrorOpen}
         onClose={onCloseModalError}
       />

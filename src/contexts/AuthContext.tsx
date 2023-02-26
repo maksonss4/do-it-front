@@ -23,6 +23,7 @@ export interface ISignIn {
 
 interface IAuthContextData {
   signIn: (creadentials: ISignIn) => Promise<void>;
+  signOut: () => void;
   user: IUser;
   accessToken: string;
 }
@@ -61,12 +62,18 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
     setData({ accessToken, user });
   };
 
+  const signOut = () => {
+    localStorage.removeItem("@Doit:accessToken");
+    localStorage.removeItem("@Doit:user");
+  };
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
         user: data.user,
         accessToken: data.accessToken,
+        signOut,
       }}
     >
       {children}

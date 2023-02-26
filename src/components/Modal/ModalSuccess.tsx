@@ -1,47 +1,83 @@
 import {
+  Box,
   Button,
+  Center,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
-  theme,
 } from "@chakra-ui/react";
-import { FaExclamation } from "react-icons/fa";
+import { FaExclamation, FaTimes } from "react-icons/fa";
+import { myTheme } from "../../styles/theme";
 
 interface IModalSuccessProps {
   isOpen: boolean;
   onClose: () => void;
+  message: string;
+  buttonMessage: string;
+  onClick: () => void;
+  secondaryText: string;
 }
 
-export const ModalSuccess = ({ isOpen, onClose }: IModalSuccessProps) => {
+export const ModalSuccess = ({
+  isOpen,
+  onClose,
+  buttonMessage,
+  message,
+  onClick,
+  secondaryText,
+}: IModalSuccessProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <FaExclamation color={theme.colors.red["500"]} /> Oops!
+      <ModalContent padding="2" bg="white" color="gray.800">
+        <ModalHeader display="flex">
+          <Center bg="purple.500" w="30px" h="30px" borderRadius="5px">
+            <FaExclamation color={myTheme.colors.white} />
+          </Center>
+          <Text fontWeight="bold" ml="2">
+            Yesss...
+          </Text>
+          <Center
+            onClick={onClose}
+            as="button"
+            ml="auto"
+            w="32px"
+            h="32px"
+            bg="red.600"
+            fontSize="lg"
+            borderRadius="md"
+            _hover={{ bg: "red.700" }}
+          >
+            <FaTimes color={myTheme.colors.white} />
+          </Center>
         </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Text>Ocorreu algum erro!</Text>
+
+        <ModalBody textAlign="center">
+          <Text>
+            <Box as="p" dangerouslySetInnerHTML={{ __html: message }} />
+          </Text>
         </ModalBody>
-        <ModalFooter>
+
+        <ModalFooter flexDirection="column">
           <Button
-            bg="red.500"
+            bg="purple.500"
             color="white"
             w="100%"
-            _hover={{ bg: "red.600" }}
-            onClick={onClose}
+            h="60px"
+            _hover={{ bg: "purple.600" }}
+            onClick={onClick}
           >
-            Tentar Novamente
+            {buttonMessage}
           </Button>
-          <Text>
-            Você já pode tentar novamente, clicando no botão acima ou aguarde
-            alguns minutos...
+          <Text textAlign="center" mt="4">
+            <Box
+              as="span"
+              dangerouslySetInnerHTML={{ __html: secondaryText }}
+            />
           </Text>
         </ModalFooter>
       </ModalContent>
