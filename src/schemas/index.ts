@@ -14,3 +14,11 @@ export const signupSchema = yup.object().shape({
     .required("Confirmação de senha obrigatória")
     .oneOf([yup.ref("password")], "Senhas diferentes"),
 });
+
+export const createTaskSchema = yup.object().shape({
+  title: yup.string().required("Campo obrigatório"),
+  description: yup
+    .string()
+    .required("Campo obrigatório")
+    .max(100, "Máximo 100 caracters"),
+});

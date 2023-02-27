@@ -22,7 +22,7 @@ export const Login = () => {
     resolver: yupResolver(signInSchema),
   });
 
-  const handleSignIn: any = (data: ISignIn) => {
+  const handleSignIn = (data: ISignIn) => {
     setLoading(true);
 
     signIn(data)
