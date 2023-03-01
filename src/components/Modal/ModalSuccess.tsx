@@ -58,7 +58,7 @@ export const ModalSuccess = ({
 
         <ModalBody textAlign="center">
           <Text>
-            <Box as="p" dangerouslySetInnerHTML={{ __html: message }} />
+            <Box as="span" dangerouslySetInnerHTML={{ __html: message }} />
           </Text>
         </ModalBody>
 

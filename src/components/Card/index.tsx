@@ -8,9 +8,25 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaCheck, FaTrash } from "react-icons/fa";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
 
-export const Card = () => {
+interface ITask {
+  id: string;
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+interface ICardProps {
+  task: ITask;
+}
+
+export const Card = ({ task }: ICardProps) => {
+  const { deleteTask, updateTask } = useTasks();
+  const { accessToken, user } = useAuth();
+
   return (
     <Box
       cursor="pointer"
@@ -24,7 +40,7 @@ export const Card = () => {
     >
       <Flex justify="space-between">
         <Heading as="h1" size="md">
-          Studying database-driven concepts
+          {task.title}
         </Heading>
         <HStack spacing="4">
           <Center
@@ -35,6 +51,7 @@ export const Card = () => {
             borderRadius="5px"
             borderColor="gray.200"
             bgColor="white"
+            onClick={() => deleteTask(task.id, accessToken)}
           >
             <FaTrash color={myTheme.colors.gray[300]} />
           </Center>
@@ -46,6 +63,7 @@ export const Card = () => {
             borderRadius="5px"
             borderColor="gray.200"
             bgColor="white"
+            onClick={() => updateTask(task.id, user.id, accessToken)}
           >
             <FaCheck color={myTheme.colors.gray[300]} />
           </Center>
@@ -53,8 +71,12 @@ export const Card = () => {
       </Flex>
 
       <Box w="100%" mt="4">
-        <Text>Start study through Kenzie app, for 1 hour and a half</Text>
-        <Progress colorScheme="purple" mt="2.5" value={10} />
+        <Text>{task.description}</Text>
+        <Progress
+          colorScheme="purple"
+          mt="2.5"
+          value={task.completed ? 100 : 10}
+        />
         <Text color="gray.200" mt="3">
           07 March 2021
         </Text>
