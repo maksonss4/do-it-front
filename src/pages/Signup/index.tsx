@@ -10,6 +10,7 @@ import { api } from "../../services/api";
 import { ModalSuccess } from "../../components/Modal/ModalSuccess";
 import { ModalError } from "../../components/Modal/ModalError";
 import { useNavigate } from "react-router-dom";
+import * as uuid from "uuid";
 
 export interface ISignup {
   name: string;
@@ -45,8 +46,8 @@ export const Signup = () => {
     setLoading(true);
 
     api
-      .post("/register", { name, email, password })
-      .then((res) => {
+      .post("/register", { name, email, password, id: uuid.v4() })
+      .then(() => {
         setLoading(false);
         onOpenModalSuccess();
       })

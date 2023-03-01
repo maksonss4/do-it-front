@@ -21,9 +21,10 @@ interface ITask {
 
 interface ICardProps {
   task: ITask;
+  onClick: (task: ITask) => void;
 }
 
-export const Card = ({ task }: ICardProps) => {
+export const Card = ({ task, onClick }: ICardProps) => {
   const { deleteTask, updateTask } = useTasks();
   const { accessToken, user } = useAuth();
 
@@ -36,7 +37,7 @@ export const Card = ({ task }: ICardProps) => {
       borderColor="gray.50"
       boxShadow="base"
       padding="7"
-      w={["330px", "auto"]}
+      w={["88vw", "auto"]}
     >
       <Flex justify="space-between">
         <Heading as="h1" size="md">
@@ -70,7 +71,7 @@ export const Card = ({ task }: ICardProps) => {
         </HStack>
       </Flex>
 
-      <Box w="100%" mt="4">
+      <Box onClick={() => onClick(task)} w="100%" mt="4">
         <Text>{task.description}</Text>
         <Progress
           colorScheme="purple"

@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { api } from "../services/api";
+import * as uuid from "uuid";
 
 interface ITaskProviderProps {
   children: ReactNode;
@@ -64,12 +65,17 @@ export const TaskProvider = ({ children }: ITaskProviderProps) => {
 
   const createTask = useCallback(
     async (data: Omit<ITask, "id">, accessToken: string) => {
+      const id = uuid.v4();
       api
-        .post("/tasks", data, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
+        .post(
+          "/tasks",
+          { ...data, id },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
         .then((res: AxiosResponse<ITask>) =>
           setTasks((oldTasks) => [...oldTasks, res.data])
         )
@@ -107,10 +113,9 @@ export const TaskProvider = ({ children }: ITaskProviderProps) => {
             },
           }
         )
-        .then((res) => {
+        .then(() => {
           const filteredTasks = tasks.filter((task) => task.id !== taskId);
-          const task = tasks.find((task) => taskId !== task.id);
-
+          const task = tasks.find((task) => taskId === task.id);
           if (task) {
             task.completed = true;
             setTasks([...filteredTasks, task]);

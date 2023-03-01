@@ -6,12 +6,12 @@ import { Signup } from "../pages/Signup";
 
 export const ContainerRoutes = () => (
   <Routes>
-    <Route path="/" element={<Login />} />
-    <Route path="/signup" element={<Signup />} />
     <Route element={<ProtectedRoutes />}>
       <Route path="/dashboard" element={<Dashboard />} />
     </Route>
+    <Route path="/" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
 
-    <Route path="*" element={<Navigate replace to={"/"} />} />
+    <Route path="*" element={<Navigate replace to={"/dashboard"} />} />
   </Routes>
 );
