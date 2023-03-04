@@ -1,11 +1,26 @@
 import { Button, Center, Flex, useDisclosure } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
 import { ModalCreateTask } from "../Modal/ModalCreateTask";
 import { Input } from "./Input";
 
+interface ISearchBoxData {
+  title: string;
+}
+
 export const SearchBox = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { searchTask } = useTasks();
+  const { accessToken } = useAuth();
+
+  const handleSearchBox = ({ title }: ISearchBoxData) => {
+    searchTask(title, accessToken);
+  };
+
+  const { register, handleSubmit } = useForm<ISearchBoxData>();
 
   return (
     <>
@@ -18,9 +33,14 @@ export const SearchBox = () => {
         paddingBottom="6"
         borderBottomWidth="1px"
         borderColor="gray.50"
+        flexDir={["column", "column", "row", "row"]}
       >
-        <Flex as="form">
-          <Input placeholder="Pesquisar por tarefa" w="35vw" name="title" />
+        <Flex as="form" onSubmit={handleSubmit(handleSearchBox)}>
+          <Input
+            placeholder="Pesquisar por tarefa"
+            w={["100%", "100%", "35vw"]}
+            {...register("title")}
+          />
           <Center
             borderRadius="8px"
             as="button"
@@ -36,12 +56,14 @@ export const SearchBox = () => {
         <Button
           bg="purple.500"
           color="white"
-          paddingX="16"
-          ml="4"
-          h="60px"
+          ml={["0", "0", "4"]}
+          h="max-content"
+          paddingY="20px"
           borderRadius="8px"
-          _hover={{ bg: "purple.600" }}
           onClick={onOpen}
+          mt={["4", "4", "8"]}
+          _hover={{ bg: "purple.600" }}
+          whiteSpace="pre-wrap"
         >
           Adicionar uma nova tarefa
         </Button>

@@ -2,11 +2,16 @@ import { Flex } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "../../schemas";
-import { ISignIn, useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LoginInfo } from "./LoginInfo";
 import { LoginForm } from "./LoginForm";
 import { useState } from "react";
+
+interface ISignIn {
+  email: string;
+  password: string;
+}
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
