@@ -3,13 +3,17 @@ import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Form/Input";
-import { ISignIn } from "../../contexts/AuthContext";
 
 interface ILoginFormProps {
   handleSignIn: () => void;
   errors: FieldErrors<ISignIn>;
   register: UseFormRegister<ISignIn>;
   loadingLogin: boolean;
+}
+
+export interface ISignIn {
+  email: string;
+  password: string;
 }
 
 export const LoginForm = ({

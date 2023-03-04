@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Center,
   Flex,
   Heading,
@@ -8,19 +7,12 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Progress,
   Text,
 } from "@chakra-ui/react";
-import {
-  FaCheck,
-  FaCube,
-  FaExclamation,
-  FaTimes,
-  FaTrash,
-} from "react-icons/fa";
+import { FaCheck, FaCube, FaTimes, FaTrash } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";

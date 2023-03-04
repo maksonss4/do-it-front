@@ -16,7 +16,7 @@ interface IAuthState {
   user: IUser;
 }
 
-export interface ISignIn {
+interface ISignIn {
   email: string;
   password: string;
 }
