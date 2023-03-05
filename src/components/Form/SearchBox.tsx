@@ -61,7 +61,7 @@ export const SearchBox = () => {
           paddingY="20px"
           borderRadius="8px"
           onClick={onOpen}
-          mt={["4", "4", "8"]}
+          mt={["4", "4", "0"]}
           _hover={{ bg: "purple.600" }}
           whiteSpace="pre-wrap"
         >

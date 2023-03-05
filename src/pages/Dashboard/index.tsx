@@ -1,11 +1,13 @@
-import { Box, Grid, useDisclosure } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Card } from "../../components/Card";
 import { SearchBox } from "../../components/Form/SearchBox";
 import { Header } from "../../components/Header";
 import { ModalTaskDetail } from "../../components/Modal/ModalTaskDetail";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
+import { FirstTask } from "./FirstTask";
+import { NotResult } from "./NotResult";
+import { TasksList } from "./TasksList";
 
 interface ITask {
   id: string;
@@ -16,7 +18,7 @@ interface ITask {
 
 export const Dashboard = () => {
   const [loading, setLoading] = useState(true);
-  const { tasks, loadTasks } = useTasks();
+  const { tasks, loadTasks, notFound } = useTasks();
   const { user, accessToken } = useAuth();
   const [selectedTask, setSelectedTask] = useState<ITask>({} as ITask);
 
@@ -28,7 +30,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     loadTasks(user.id, accessToken).then(() => setLoading(false));
-  }, []);
+  }, [accessToken, loadTasks, user.id]);
 
   const handleClick = (task: ITask) => {
     setSelectedTask(task);
@@ -42,20 +44,22 @@ export const Dashboard = () => {
         onClose={onCloseModalTaskDetail}
         task={selectedTask}
       />
+      <Header />
       <Box>
-        <Header />
-        <SearchBox />
-        <Grid
-          w="100%"
-          templateColumns="repeat(auto-fill, minmax(420px, 1fr))"
-          gap={10}
-          paddingX="8"
-          mt="8"
-        >
-          {tasks.map((task) => (
-            <Card onClick={handleClick} key={task.id} task={task} />
-          ))}
-        </Grid>
+        {!loading && !tasks.length ? (
+          <>
+            <FirstTask />
+          </>
+        ) : (
+          <>
+            <SearchBox />
+            {notFound ? (
+              <NotResult />
+            ) : (
+              <TasksList loading={loading} handleClick={handleClick} />
+            )}
+          </>
+        )}
       </Box>
     </>
   );

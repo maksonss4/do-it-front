@@ -19,6 +19,7 @@ interface ITask {
   description: string;
   userId: string;
   completed: boolean;
+  created_at: Date;
 }
 
 interface ITaskContextData {

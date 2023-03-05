@@ -11,12 +11,15 @@ import { FaCheck, FaTrash } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
+import moment from "moment";
+import "moment/locale/pt-br";
 
 interface ITask {
   id: string;
   title: string;
   description: string;
   completed: boolean;
+  created_at: Date;
 }
 
 interface ICardProps {
@@ -28,6 +31,11 @@ export const Card = ({ task, onClick }: ICardProps) => {
   const { deleteTask, updateTask } = useTasks();
   const { accessToken, user } = useAuth();
 
+  const dateUppercase = (data: Date) => {
+    const dateString = moment(data).format("LLLL");
+    return dateString[0].toUpperCase() + dateString.substring(1);
+  };
+
   return (
     <Box
       cursor="pointer"
@@ -37,7 +45,8 @@ export const Card = ({ task, onClick }: ICardProps) => {
       borderColor="gray.50"
       boxShadow="base"
       padding="7"
-      w={["88vw", "auto"]}
+      w="100%"
+      maxW="400px"
     >
       <Flex justify="space-between">
         <Heading as="h1" size="md">
@@ -79,7 +88,7 @@ export const Card = ({ task, onClick }: ICardProps) => {
           value={task.completed ? 100 : 10}
         />
         <Text color="gray.200" mt="3">
-          07 March 2021
+          {dateUppercase(task.created_at)}
         </Text>
       </Box>
     </Box>

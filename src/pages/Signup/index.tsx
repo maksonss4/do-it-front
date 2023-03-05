@@ -1,4 +1,4 @@
-import { Flex, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../schemas";
@@ -58,11 +58,6 @@ export const Signup = () => {
       });
   };
 
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    md: true,
-  });
-
   const navigate = useNavigate();
 
   return (
@@ -98,32 +93,17 @@ export const Signup = () => {
         <Flex
           w={["100%", "100%", "90%", "65%"]}
           justifyContent="center"
-          flexDirection={["column", "column", "row", "row"]}
+          flexDirection={["column-reverse", "column-reverse", "row"]}
           alignItems="center"
         >
-          {isWideVersion ? (
-            <>
-              <GoBackButton top="5" right="85vw" />
-              <SignupForm
-                errors={errors}
-                handleSignup={handleSubmit(handleSignup)}
-                loadingLogin={loading}
-                register={register}
-              />
-              <SignupInfo />
-            </>
-          ) : (
-            <>
-              <GoBackButton top="10" right="15" />
-              <SignupInfo />
-              <SignupForm
-                errors={errors}
-                handleSignup={handleSubmit(handleSignup)}
-                loadingLogin={loading}
-                register={register}
-              />
-            </>
-          )}
+          <GoBackButton />
+          <SignupForm
+            errors={errors}
+            handleSignup={handleSubmit(handleSignup)}
+            loadingLogin={loading}
+            register={register}
+          />
+          <SignupInfo />
         </Flex>
       </Flex>
     </>

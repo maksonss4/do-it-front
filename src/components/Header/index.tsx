@@ -13,14 +13,19 @@ export const Header = () => {
       borderBottomColor="#f5f5f5"
       paddingX="8"
       paddingY="2"
+      as="header"
+      justifyContent="space-between"
+      alignItems={["unset", "center"]}
     >
-      <Flex align="center">
+      <Flex
+        align={["flex-start", "center"]}
+        gap="4"
+        flexDir={["column", "row"]}
+      >
         <Image src={LogoMin} />
-        <Heading ml="4" size="lg">
-          Dashboard
-        </Heading>
+        <Heading size="lg">Dashboard</Heading>
       </Flex>
-      <Center ml="auto" onClick={onToggle} as="button" fontSize="2rem">
+      <Center onClick={onToggle} as="button" fontSize="2rem" h="max-content">
         <FaTh color={myTheme.colors.gray[300]} />
       </Center>
       <Menu isOpen={isOpen} onClose={onClose} />
