@@ -12,7 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
 import moment from "moment";
-import "moment/locale/pt-br";
+import "moment/dist/locale/pt-br";
 
 interface ITask {
   id: string;
