@@ -6,6 +6,8 @@ import {
   InputProps as ChakraInputProps,
   InputLeftElement,
   InputGroup,
+  InputRightElement,
+  Button,
 } from "@chakra-ui/react";
 import { FieldError } from "react-hook-form";
 import {
@@ -27,7 +29,9 @@ interface IInputProps extends ChakraInputProps {
         message: string;
       }>
     | undefined;
-  icon?: IconType;
+  iconLeaft?: IconType;
+  iconRight?: IconType;
+  handleClickIconRight?: () => void;
 }
 
 type inputVariationOptions = {
@@ -42,7 +46,15 @@ const inputVariation: inputVariationOptions = {
 };
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
-  { name, icon: Icon, label, error = undefined, ...rest },
+  {
+    name,
+    iconLeaft: IconLeaft,
+    iconRight: IconRight,
+    handleClickIconRight,
+    label,
+    error = undefined,
+    ...rest
+  },
   ref
 ) => {
   const [variation, setVariation] = useState("default");
@@ -72,11 +84,27 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
       {!!label && <FormLabel color="gray.400">{label}</FormLabel>}
 
       <InputGroup flexDirection="column">
-        {Icon && (
+        {IconLeaft && (
           <InputLeftElement
             color={inputVariation[variation]}
             mt="2.5"
-            children={<Icon />}
+            children={<IconLeaft />}
+          />
+        )}
+        {IconRight && (
+          <InputRightElement
+            mt="2.5"
+            children={
+              <Button
+                padding="0"
+                bgColor="transparent"
+                _hover={{ bgColor: "transparent" }}
+                h="20px"
+                onClick={handleClickIconRight}
+              >
+                <IconRight />
+              </Button>
+            }
           />
         )}
 

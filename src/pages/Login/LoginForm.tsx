@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Heading, Text, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Form/Input";
 
@@ -22,6 +23,8 @@ export const LoginForm = ({
   register,
   loadingLogin,
 }: ILoginFormProps) => {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
   const navigate = useNavigate();
 
   return (
@@ -41,7 +44,7 @@ export const LoginForm = ({
         <Box w="100%">
           <Input
             placeholder="Digite seu login"
-            icon={FaEnvelope}
+            iconLeaft={FaEnvelope}
             label="Login"
             error={errors.email}
             {...register("email")}
@@ -54,11 +57,13 @@ export const LoginForm = ({
         </Box>
         <Input
           placeholder="Digite sua senha"
-          icon={FaLock}
+          iconLeaft={FaLock}
           label={"Senha"}
           error={errors.password}
-          type="password"
+          type={show ? "text" : "password"}
           {...register("password")}
+          iconRight={show ? FaEyeSlash : FaEye}
+          handleClickIconRight={handleClick}
         />
       </VStack>
       <VStack mt="4" spacing="5">

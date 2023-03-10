@@ -64,7 +64,6 @@ export const TaskProvider = ({ children }: ITaskProviderProps) => {
 
       setTasks(response.data);
     } catch (err) {
-      console.log(err);
       setTasks([]);
     }
   }, []);
