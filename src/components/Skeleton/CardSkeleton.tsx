@@ -1,5 +1,5 @@
 import { Box, Skeleton, SkeletonProps } from "@chakra-ui/react";
-import { v4 } from "uuid";
+import * as uuid from "uuid";
 
 interface ICardSkeletonProps extends SkeletonProps {
   repeatCount: number;
@@ -18,7 +18,7 @@ export const CardSkeleton = ({
           <Skeleton
             {...rest}
             speed={1}
-            key={v4()}
+            key={uuid.v4()}
             startColor="gray.100"
             endColor="gray.200"
           >
