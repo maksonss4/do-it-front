@@ -2,7 +2,7 @@
 
 ## 1. Descrição
 
-O projeto se trata de um app onde usuários cadastrados podem criar sua lista de tarefas, atualizar e/ou deletar tarefas anteriormente criadas. A aplicação precisa estar em conjunto com a fake API que você pode encontrar [Clicando aqui](https://github.com/maksonss4/json-server-doit), siga os simples passos de instalação e execução da fake API e assim poderá acessar todas as funcionalidades dessa aplicação.
+O projeto se trata de um app onde usuários cadastrados podem criar sua lista de tarefas, atualizar e/ou deletar tarefas anteriormente criadas. A aplicação precisa estar em conjunto com a fake API que você pode encontrar [clicando aqui](https://github.com/maksonss4/json-server-doit), siga os simples passos de instalação e execução da fake API e assim poderá acessar todas as funcionalidades dessa aplicação.
 
 ## 2. Tecnologias utilizadas
 
@@ -19,6 +19,13 @@ O projeto se trata de um app onde usuários cadastrados podem criar sua lista de
 - [Yup](https://www.npmjs.com/package/yup/v/0.32.11)
 
 ## 3. Passos de instalação e execução
+
+Você pode utilizar a aplicação das seguintes formas:
+
+- **_Através do link do deploy [clicando aqui](https://do-it-front.vercel.app/)._** Caso escolha essa opção, desconsidere os passos 3.1 em diante.
+- **_Clonando esse projeto em sua máquina._** Siga os passos 3.1 em diante.
+
+**_OBS: a aplicação precisa estar em conjunto com a fake API que você pode utilizar [clicando aqui](https://github.com/maksonss4/json-server-doit), siga os simples passos de instalação e execução da fake API e assim poderá acessar todas as funcionalidades dessa aplicação._**
 
 ### 3.1 Clone
 
