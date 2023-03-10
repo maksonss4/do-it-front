@@ -1,4 +1,4 @@
 import { ContainerRoutes } from "./routes";
-import "moment/dist/locale/pt-br";
+import "moment/locale/pt-br";
 
 export const App = () => <ContainerRoutes />;
