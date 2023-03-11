@@ -20,18 +20,23 @@ O projeto se trata de um app onde usuários cadastrados podem criar sua lista de
 
 ## 3. Passos de instalação e execução
 
-Você pode utilizar a aplicação das seguintes formas:
+### 3.1 Clonando fake API
 
-- **_Através do link do deploy [clicando aqui](https://do-it-front.vercel.app/)._** Caso escolha essa opção, desconsidere os passos 3.1 em diante.
-- **_Clonando esse projeto em sua máquina._** Siga os passos 3.1 em diante.
+A aplicação precisa estar em conjunto com a fake API que você pode utilizar [clicando aqui](https://github.com/maksonss4/json-server-doit), siga os simples passos de instalação e execução da fake API (Na própria documentação da fake API) e assim poderá acessar todas as funcionalidades dessa aplicação.
 
-**_OBS: a aplicação precisa estar em conjunto com a fake API que você pode utilizar [clicando aqui](https://github.com/maksonss4/json-server-doit), siga os simples passos de instalação e execução da fake API e assim poderá acessar todas as funcionalidades dessa aplicação._**
+### 3.2 Acessando a aplicação
 
-### 3.1 Clone
+Com a fake API rodando na sua máquina, [Clique aqui](https://do-it-front.vercel.app/) para utilizar a aplicação em produção :)
+
+## 4. Outra maneira de utilizar a aplicação
+
+Você também pode utilizar essa aplicação rodando o servidor em sua máquina. Siga os seguintes passos:
+
+### 4.1 Clone
 
 Clone o projeto em sua máquina.
 
-## 3.2 Instalando dependências
+### 4.2 Instalando dependências
 
 Instale as dependências no projeto com o comando:
 
@@ -39,9 +44,9 @@ Instale as dependências no projeto com o comando:
 yarn
 ```
 
-## 3.3 Rodando a aplicação
+### 4.3 Rodando a aplicação
 
-Digite o seguinte comando no terminal para rodar a aplicação no navegador:
+Digite o seguinte comando no terminal para rodar a aplicação no localhost:
 
 ```
 yarn start
