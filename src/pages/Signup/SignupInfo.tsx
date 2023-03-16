@@ -1,5 +1,4 @@
 import LogoBgWhite from "../../assets/logo-bg-white.svg";
-import LogoMin from "../../assets/logo-min.svg";
 import {
   Box,
   Center,
@@ -10,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { FaForward } from "react-icons/fa";
+import { FaForward, FaHandHolding } from "react-icons/fa";
 import { myTheme } from "../../styles/theme";
 
 export const SignupInfo = () => {
@@ -27,24 +26,23 @@ export const SignupInfo = () => {
         mt={["15px", "0"]}
       >
         <Flex w="100%">
-          <Center borderRadius="5px" bg="white" w="50px" h="50px">
+          <Center borderRadius="5px" bg="white" minW="50px" h="50px">
             <FaForward color={myTheme.colors.purple["800"]} size="25" />
           </Center>
           <Box ml="4">
             <Heading size="lg"> Agilidade</Heading>
-            <Text>
-              Agilize seus projetos com rapidez <br /> e muita performance
-            </Text>
+            <Text>Agilize seus projetos com rapidez e muita performance</Text>
           </Box>
         </Flex>
         <Flex w="100%">
-          <Center borderRadius="5px" bg="white" w="50px" h="50px">
-            <Image src={LogoMin} w="25px" />
+          <Center borderRadius="5px" bg="white" minW="50px" h="50px">
+            <FaHandHolding color={myTheme.colors.purple["800"]} size="25" />
           </Center>
           <Box ml="4">
             <Heading size="lg"> Simplicidade</Heading>
             <Text>
-              Armazene seus projetos em uma <br /> interface altamente usual
+              Armazene seus projetos e atividades em uma interface altamente
+              usual
             </Text>
           </Box>
         </Flex>
