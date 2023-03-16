@@ -11,8 +11,7 @@ import { FaCheck, FaTrash } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
-import moment from "moment";
-import "moment/locale/pt-br";
+import { dateUppercase } from "../../utils";
 
 interface ITask {
   id: string;
@@ -30,11 +29,6 @@ interface ICardProps {
 export const Card = ({ task, onClick }: ICardProps) => {
   const { deleteTask, updateTask } = useTasks();
   const { accessToken, user } = useAuth();
-
-  const dateUppercase = (data: Date) => {
-    const dateString = moment(data).format("LLLL");
-    return dateString[0].toUpperCase() + dateString.substring(1);
-  };
 
   return (
     <Box

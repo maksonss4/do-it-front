@@ -16,12 +16,14 @@ import { FaCheck, FaCube, FaTimes, FaTrash } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTasks } from "../../contexts/TasksContext";
 import { myTheme } from "../../styles/theme";
+import { dateUppercase } from "../../utils";
 
 interface ITask {
   id: string;
   title: string;
   description: string;
   completed: boolean;
+  created_at: Date;
 }
 
 interface IModalTaskDetailProps {
@@ -106,8 +108,8 @@ export const ModalTaskDetail = ({
 
         <Box padding="6">
           <Progress colorScheme="purple" value={task.completed ? 100 : 10} />
-          <Text color="gray.300" mt="3">
-            07 March 2021
+          <Text color="gray.200" mt="3">
+            {dateUppercase(task.created_at)}
           </Text>
         </Box>
       </ModalContent>

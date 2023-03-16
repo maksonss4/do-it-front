@@ -14,6 +14,7 @@ interface ITask {
   title: string;
   description: string;
   completed: boolean;
+  created_at: Date;
 }
 
 export const Dashboard = () => {
