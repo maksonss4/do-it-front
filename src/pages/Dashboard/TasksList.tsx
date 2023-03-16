@@ -29,6 +29,7 @@ export const TasksList = ({ handleClick, loading }: ITaskListProps) => {
       flexDir="row"
       flexWrap="wrap"
       justifyContent={["center", "center", "unset"]}
+      paddingBottom="20px"
     >
       {loading ? (
         <CardSkeleton repeatCount={9} w="100%" maxW="400px" />

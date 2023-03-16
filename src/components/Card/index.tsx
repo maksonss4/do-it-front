@@ -49,7 +49,7 @@ export const Card = ({ task, onClick }: ICardProps) => {
       maxW="400px"
     >
       <Flex justify="space-between">
-        <Heading as="h1" size="md">
+        <Heading as="h1" size="md" paddingRight="10px">
           {task.title}
         </Heading>
         <HStack spacing="4">
